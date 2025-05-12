@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>U3 S6 Tarea - Formulario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-5">
+
+<div class="container bg-white p-4 rounded shadow" style="max-width: 800px;">
+  <h1 class="text-center mb-4">U3 S6 Tarea - Formulario</h1>
+
+  <form>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="apellido" class="form-label">Apellido:</label>
+        <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="cedula" class="form-label">Cédula:</label>
+        <input type="text" class="form-control" id="cedula" placeholder="Ej: 0102030405">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="edad" class="form-label">Edad:</label>
+        <input type="number" class="form-control" id="edad" min="1" max="100" placeholder="Edad">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+        <input type="date" class="form-control" id="fechaNacimiento">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Dirección:</label>
+      <input type="text" class="form-control" id="direccion" placeholder="Dirección completa">
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="email" class="form-label">Correo Electrónico:</label>
+        <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="password" class="form-label">Contraseña:</label>
+        <input type="password" class="form-control" id="password" placeholder="•••••••">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="colorFavorito" class="form-label">Color Favorito:</label>
+      <select class="form-select" id="colorFavorito">
+        <option value="">-- Selecciona un color --</option>
+        <option value="Azul">Azul</option>
+        <option value="Negro">Negro</option>
+        <option value="Morado">Morado</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <fieldset>
+          <legend class="fs-6">Género:</legend>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="masculino" name="genero" value="Masculino">
+            <label class="form-check-label" for="masculino">Masculino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="femenino" name="genero" value="Femenino">
+            <label class="form-check-label" for="femenino">Femenino</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <fieldset>
+          <legend class="fs-6">Intereses:</legend>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="interes1" value="Deportes">
+            <label class="form-check-label" for="interes1">Deportes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="interes2" value="Música">
+            <label class="form-check-label" for="interes2">Música</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="interes3" value="Lectura">
+            <label class="form-check-label" for="interes3">Lectura</label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="comentario" class="form-label">Comentario:</label>
+      <textarea class="form-control" id="comentario" rows="3" placeholder="Escribe un comentario..."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="satisfaccion" class="form-label">¿Qué te parece este formulario?</label>
+      <div class="d-flex align-items-center">
+       <span class="me-2">1 (Baja)</span>
+       <input type="range" class="form-range flex-grow-1 mx-2" min="1" max="10" id="satisfaccion">
+       <span class="ms-2">10 (Alta)</span>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="mostrarValores()">Mostrar Valores</button>
+  </form>
+
+  <pre id="resultado" class="mt-4 bg-light p-3 border rounded"></pre>
+</div>
+
+<script>
+function mostrarValores() {
+  const nombre = document.getElementById('nombre').value;
+  const apellido = document.getElementById('apellido').value;
+  const cedula = document.getElementById('cedula').value;
+  const edad = document.getElementById('edad').value;
+  const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+  const direccion = document.getElementById('direccion').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const comentario = document.getElementById('comentario').value;
+  const colorFavorito = document.getElementById('colorFavorito').value;
+  const satisfaccion = document.getElementById('satisfaccion').value;
+
+  const genero = document.querySelector('input[name="genero"]:checked');
+  const generoValor = genero ? genero.value : 'No seleccionado';
+
+  const intereses = [];
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => intereses.push(cb.value));
+
+  const resultado = `
+Nombre: ${nombre} ${apellido}
+Cédula: ${cedula}
+Edad: ${edad}
+Fecha de nacimiento: ${fechaNacimiento}
+Dirección: ${direccion}
+Correo: ${email}
+Contraseña: ${password}
+Color Favorito: ${colorFavorito}
+Género: ${generoValor}
+Intereses: ${intereses.join(', ') || 'Ninguno'}
+Comentario: ${comentario}
+Satisfacción con el formulario: ${satisfaccion}/10
+  `;
+  document.getElementById('resultado').textContent = resultado.trim();
+}
+</script>
+
+</body>
+</html>
